@@ -1,1 +1,1 @@
-# Micripython
+# Micropython
