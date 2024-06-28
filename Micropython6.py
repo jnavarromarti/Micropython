@@ -1,8 +1,7 @@
 # Micropython: NO.6
 # Juego del ahorcado
 import random
-def word_selector (*args):
-    return random.choice(args)
+#Lista de palabras
 words = [
     "abundancia", "accesorio", "actividad", "acuario", "admirable", "adolescente", "advertencia", "afortunado", "agradable", "agricultura",
     "albahaca", "alcachofa", "alegría", "alfabeto", "alimento", "alquiler", "amabilidad", "análisis", "aniversario", "anónimo",
@@ -21,17 +20,19 @@ words = [
     "idea", "identidad", "ilusión", "imaginación", "impresionante", "incidente", "increíble", "independencia", "información", "inmensidad",
     "innovación", "inspiración", "inteligencia", "interesante", "invierno", "investigación", "jardinería", "justicia", "laboratorio", "libertad"
 ]
-
+#Funcion de seleccion de palabra aleatoria
+def word_selector (*args):
+    return random.choice(args)
+# Funcion longitud de la palabra, sustituye los caracteres de la palabra seleccionada por guiones
 def word_length(length_word):
     display_word = "-" * len(length_word)
     return print (display_word)
-
-
+# Funcion de la vida del jugador, crea un array de 6 corazones
 def player_life():
     life = ' ❤️ '
     player_healt = life * 6
     return player_healt
-
+#Funcion que sustituye las letras acertadas
 def word_selected (selected_word, guessed_letter):
     display = ""
     for letter in selected_word:
@@ -40,7 +41,7 @@ def word_selected (selected_word, guessed_letter):
         else:
             display += "-"
     return display
-
+#funcion que maneja el juego mientra la vida del jugador sea mayor a 6 y gestiona los aciertos y los fallos
 def letter_hit (selected_word, player_health, guesseds_letter):
     while len(player_health) > 0:
         display = word_selected(selected_word, guesseds_letter)
@@ -66,7 +67,7 @@ def letter_hit (selected_word, player_health, guesseds_letter):
             print(f"¡Fallaste! {letter_guess} no está en la palabra")
 
     print(f"¡Oh no! Te quedaste sin vidas. La palabra era: '{selected_word}'!")
-
+#Llamadas e inicio
 selected_word = word_selector(*words)
 player_health = player_life()
 guesseds_letter = []
